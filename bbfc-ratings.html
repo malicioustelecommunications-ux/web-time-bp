@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BBFC Rating Badges</title>
+  <link rel="stylesheet" href="css/bbfc-ratings.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      font: 10pt/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    h1 { font-size: 14pt; margin: 0 0 16px; }
+    .panels { display: flex; flex-wrap: wrap; gap: 16px; }
+    .panel { flex: 1 1 320px; padding: 16px; border-radius: 8px; }
+    .panel--light { background: #f4f4f4; }
+    .panel--dark { background: #15171c; color: #e8e8e8; }
+    .ratings { list-style: none; margin: 0; padding: 0; }
+    .ratings li {
+      display: grid;
+      grid-template-columns: 3.4em 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 0;
+    }
+    .ratings li > :first-child { justify-self: center; }
+    .ratings b { display: block; }
+    .row { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>BBFC rating badges (10pt)</h1>
+  <div class="panels">
+    <section class="panel panel--light">
+      <ul class="ratings">
+        <li><span class="bbfc bbfc--u" role="img" aria-label="BBFC rating: U">U</span><span><b>U</b>Universal: suitable for all</span></li>
+        <li><span class="bbfc bbfc--pg" role="img" aria-label="BBFC rating: PG">PG</span><span><b>PG</b>Parental guidance</span></li>
+        <li><span class="bbfc bbfc--12a" role="img" aria-label="BBFC rating: 12A">12A</span><span><b>12A</b>Cinema only: under 12s with an adult</span></li>
+        <li><span class="bbfc bbfc--12" role="img" aria-label="BBFC rating: 12">12</span><span><b>12</b>Video and VOD: 12 and over</span></li>
+        <li><span class="bbfc bbfc--15" role="img" aria-label="BBFC rating: 15">15</span><span><b>15</b>15 and over</span></li>
+        <li><span class="bbfc bbfc--18" role="img" aria-label="BBFC rating: 18">18</span><span><b>18</b>Adults only</span></li>
+        <li><span class="bbfc bbfc--r18" role="img" aria-label="BBFC rating: R18">R18</span><span><b>R18</b>Licensed premises only</span></li>
+        <li><span class="bbfc" role="img" aria-label="Rating to be confirmed">TBC</span><span><b>Fallback</b>Bare .bbfc class, e.g. TBC</span></li>
+      </ul>
+    </section>
+    <section class="panel panel--dark">
+      <ul class="ratings">
+        <li><span class="bbfc bbfc--u" role="img" aria-label="BBFC rating: U">U</span><span><b>Paddington in Peru</b>2024 · 1h 46m</span></li>
+        <li><span class="bbfc bbfc--pg" role="img" aria-label="BBFC rating: PG">PG</span><span><b>The Muppet Christmas Carol</b>1992 · 1h 25m</span></li>
+        <li><span class="bbfc bbfc--12a" role="img" aria-label="BBFC rating: 12A">12A</span><span><b>Dune: Part Two</b>2024 · 2h 46m</span></li>
+        <li><span class="bbfc bbfc--12" role="img" aria-label="BBFC rating: 12">12</span><span><b>Doctor Who</b>Series 1 · Episode 3</span></li>
+        <li><span class="bbfc bbfc--15" role="img" aria-label="BBFC rating: 15">15</span><span><b>This Is England</b>2006 · 1h 41m</span></li>
+        <li><span class="bbfc bbfc--18" role="img" aria-label="BBFC rating: 18">18</span><span><b>Trainspotting</b>1996 · 1h 34m</span></li>
+        <li><span class="bbfc bbfc--r18" role="img" aria-label="BBFC rating: R18">R18</span><span><b>R18 badge</b>For completeness</span></li>
+      </ul>
+      <div class="row">
+        <span class="bbfc bbfc--u" role="img" aria-label="BBFC rating: U">U</span>
+        <span class="bbfc bbfc--pg" role="img" aria-label="BBFC rating: PG">PG</span>
+        <span class="bbfc bbfc--12a" role="img" aria-label="BBFC rating: 12A">12A</span>
+        <span class="bbfc bbfc--12" role="img" aria-label="BBFC rating: 12">12</span>
+        <span class="bbfc bbfc--15" role="img" aria-label="BBFC rating: 15">15</span>
+        <span class="bbfc bbfc--18" role="img" aria-label="BBFC rating: 18">18</span>
+        <span class="bbfc bbfc--r18" role="img" aria-label="BBFC rating: R18">R18</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

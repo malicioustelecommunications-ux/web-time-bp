@@ -1,0 +1,82 @@
+/*
+  BBFC age rating badges
+
+  Modelled on the BBFC's current (2019) symbols: U and PG are triangles,
+  12A, 12, 15 and 18 are circles, R18 is a square. Colours are matched by
+  eye, not taken from the BBFC's official artwork specification.
+
+  Text is set at 10pt. Every other dimension is in em, so overriding
+  font-size on .bbfc scales the whole badge.
+
+  Usage:
+    <span class="bbfc bbfc--15" role="img" aria-label="BBFC rating: 15">15</span>
+*/
+
+:root {
+  --bbfc-u: #009b48;
+  --bbfc-pg: #f6b000;
+  --bbfc-12: #f47a1f;
+  --bbfc-15: #e5007d;
+  --bbfc-18: #e30613;
+  --bbfc-r18: #1f63ad;
+  --bbfc-tbc: #6e6e6e;
+
+  /* Rounded triangle, used as a mask so it scales with the badge */
+  --bbfc-triangle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 116 104'%3E%3Cpath d='M58 8 108 96H8Z' stroke='%23000' stroke-width='16' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.bbfc {
+  --bbfc-bg: var(--bbfc-tbc);
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.4em;
+  height: 2.4em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums;
+  color: #fff;
+  background: var(--bbfc-bg);
+  border-radius: 50%;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Triangles: U, PG */
+.bbfc--u,
+.bbfc--pg {
+  width: 2.9em;
+  height: 2.6em;
+  padding-top: 1.05em;
+  border-radius: 0;
+  -webkit-mask: var(--bbfc-triangle) center / 100% 100% no-repeat;
+  mask: var(--bbfc-triangle) center / 100% 100% no-repeat;
+}
+
+/* Square: R18 */
+.bbfc--r18 {
+  width: 2.6em;
+  height: 2.4em;
+  border-radius: 0.3em;
+}
+
+/* Three characters in a circle need tighter tracking */
+.bbfc--12a {
+  letter-spacing: -0.06em;
+}
+
+.bbfc--u   { --bbfc-bg: var(--bbfc-u); }
+.bbfc--pg  { --bbfc-bg: var(--bbfc-pg); }
+.bbfc--12a,
+.bbfc--12  { --bbfc-bg: var(--bbfc-12); }
+.bbfc--15  { --bbfc-bg: var(--bbfc-15); }
+.bbfc--18  { --bbfc-bg: var(--bbfc-18); }
+.bbfc--r18 { --bbfc-bg: var(--bbfc-r18); }
