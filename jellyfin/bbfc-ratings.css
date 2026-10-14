@@ -1,0 +1,115 @@
+/*
+  BBFC rating badges for Jellyfin
+
+  Paste into Dashboard > Branding > Custom CSS code. Needs bbfc-ratings.js
+  running (via the JavaScript Injector plugin) to add data-bbfc to each
+  rating; anything it doesn't recognise as a UK rating keeps Jellyfin's
+  normal style.
+
+  Same design as css/bbfc-ratings.css: colours from the BBFC Classification
+  Guidelines (2024) artwork, white border, thin black keyline, 10pt text.
+  Jellyfin's own "GB-15" text is hidden and ::before draws the badge text.
+*/
+
+.mediaInfoOfficialRating[data-bbfc] {
+    --bbfc-bg: #707070;
+    position: relative;
+    box-sizing: border-box;
+    flex: none;
+    width: 2.2em;
+    height: 2.2em;
+    margin-top: 0.05em;
+    margin-bottom: 0.05em;
+    padding: 0;
+    border: 0.1em solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.04em #000;
+    background: var(--bbfc-bg) padding-box;
+    color: transparent;
+    overflow: hidden;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* Jellyfin scales all text by 125% in TV layout; keep the badge in step */
+.layout-tv .mediaInfoOfficialRating[data-bbfc] {
+    font-size: 12.5pt;
+}
+
+.mediaInfoOfficialRating[data-bbfc]::before {
+    content: attr(data-bbfc);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: lining-nums;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.mediaInfoOfficialRating[data-bbfc="12A"],
+.mediaInfoOfficialRating[data-bbfc="12"] { --bbfc-bg: #ef7918; }
+.mediaInfoOfficialRating[data-bbfc="15"] { --bbfc-bg: #eb5893; }
+.mediaInfoOfficialRating[data-bbfc="18"] { --bbfc-bg: #d70926; }
+
+.mediaInfoOfficialRating[data-bbfc="12A"]::before {
+    letter-spacing: -0.07em;
+}
+
+/* Square: R18 */
+.mediaInfoOfficialRating[data-bbfc="R18"] {
+    --bbfc-bg: #007fc8;
+    border-radius: 0.2em;
+}
+
+/* Triangles: U, PG. Keyline, border and fill are drawn in one SVG. */
+.mediaInfoOfficialRating[data-bbfc="U"],
+.mediaInfoOfficialRating[data-bbfc="PG"] {
+    width: 2.6em;
+    height: 2.28em;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.mediaInfoOfficialRating[data-bbfc="U"] {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 228' stroke-linejoin='round'%3E%3Cpath d='M130 24 236 204H24Z' fill='%23000' stroke='%23000' stroke-width='48'/%3E%3Cpath d='M130 24 236 204H24Z' fill='%23fff' stroke='%23fff' stroke-width='40'/%3E%3Cpath d='M130 24 236 204H24Z' fill='%232ea836' stroke='%232ea836' stroke-width='20'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+.mediaInfoOfficialRating[data-bbfc="PG"] {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 228' stroke-linejoin='round'%3E%3Cpath d='M130 24 236 204H24Z' fill='%23000' stroke='%23000' stroke-width='48'/%3E%3Cpath d='M130 24 236 204H24Z' fill='%23fff' stroke='%23fff' stroke-width='40'/%3E%3Cpath d='M130 24 236 204H24Z' fill='%23fbb800' stroke='%23fbb800' stroke-width='20'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+.mediaInfoOfficialRating[data-bbfc="U"]::before,
+.mediaInfoOfficialRating[data-bbfc="PG"]::before {
+    align-items: flex-end;
+    padding-bottom: 0.14em;
+}
+
+.mediaInfoOfficialRating[data-bbfc="PG"]::before {
+    letter-spacing: -0.06em;
+}
+
+/* Where supported, centre on the cap height rather than the line box */
+@supports (text-box: trim-both cap alphabetic) {
+    .mediaInfoOfficialRating[data-bbfc]::before {
+        display: block;
+        align-content: center;
+        text-box: trim-both cap alphabetic;
+    }
+
+    .mediaInfoOfficialRating[data-bbfc="U"]::before,
+    .mediaInfoOfficialRating[data-bbfc="PG"]::before {
+        align-content: end;
+        padding-bottom: 0.3em;
+    }
+}
