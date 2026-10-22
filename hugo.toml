@@ -1,0 +1,30 @@
+baseURL = "https://example.org/"
+languageCode = "en-gb"
+title = "Portfolio"
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Work, writing and sound."
+  author = "Your Name"
+  terminalCSS = "https://unpkg.com/terminal.css@0.7.5/dist/terminal.min.css"
+
+[menus]
+  [[menus.main]]
+    name = "Work"
+    pageRef = "/work"
+    weight = 10
+  [[menus.main]]
+    name = "Paper"
+    pageRef = "/paper"
+    weight = 20
+  [[menus.main]]
+    name = "Sound"
+    pageRef = "/sound"
+    weight = 30
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 40
+
+[markup.goldmark.renderer]
+  unsafe = true

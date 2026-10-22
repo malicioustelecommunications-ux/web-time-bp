@@ -1,0 +1,80 @@
+/* Overrides on top of terminal.css. Change the variables to retheme. */
+:root {
+  --global-font-size: 16px;
+  --global-line-height: 1.5em;
+  --page-width: 60em;
+  --primary-color: #1a95e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222225;
+    --font-color: #e8e9ed;
+    --invert-font-color: #222225;
+    --secondary-color: #a3abba;
+    --tertiary-color: #a3abba;
+    --primary-color: #62c4ff;
+    --error-color: #ff3c74;
+    --progress-bar-background: #3f3f44;
+    --progress-bar-fill: #62c4ff;
+    --code-bg-color: #3f3f44;
+  }
+}
+
+body {
+  background: var(--background-color);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+main {
+  margin: 2em 0;
+}
+
+.entry-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.entry-list li::after {
+  content: none;
+}
+
+.entry-list li {
+  padding-left: 0;
+  margin-bottom: 0.75em;
+}
+
+.entry-list time,
+.meta,
+.tag {
+  color: var(--secondary-color);
+}
+
+.entry-list time {
+  margin-right: 1em;
+}
+
+.tag {
+  margin-left: 0.5em;
+}
+
+.tag::before {
+  content: "#";
+}
+
+.entry-list p {
+  margin: 0.25em 0 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.site-footer {
+  margin: 2em 0;
+  color: var(--secondary-color);
+}
