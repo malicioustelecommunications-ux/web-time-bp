@@ -1,0 +1,17 @@
+<div class="terminal-nav">
+  <header class="terminal-logo">
+    <div class="logo terminal-prompt">
+      <a href="{{ site.Home.RelPermalink }}" class="no-style">{{ site.Title }}</a>
+    </div>
+  </header>
+  <nav class="terminal-menu">
+    <ul>
+      {{ $current := . }}
+      {{ range site.Menus.main }}
+        <li>
+          <a class="menu-item{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</div>
