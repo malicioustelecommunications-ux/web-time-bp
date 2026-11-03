@@ -1,14 +1,14 @@
 {{ define "main" }}
   <article>
-    <header>
-      <h1>{{ .Title }}</h1>
-      {{ if and (not .Date.IsZero) (ne .Type "page") }}
-        <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time></p>
-      {{ end }}
-    </header>
-    {{ .Content }}
+    {{ partial "specimen-row.html" (dict "title" .Title "tag" "h1") }}
+    {{ if ne .Type "page" }}
+      <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time> · {{ .CurrentSection.Title }}</p>
+    {{ end }}
+    <div class="prose">
+      {{ .Content }}
+    </div>
   </article>
   {{ if ne .Type "page" }}
-    <p><a href="{{ .CurrentSection.RelPermalink }}">&larr; Back to {{ .CurrentSection.Title }}</a></p>
+    <p class="back"><a href="{{ .CurrentSection.RelPermalink }}">&larr; Back to {{ .CurrentSection.Title }}</a></p>
   {{ end }}
 {{ end }}
