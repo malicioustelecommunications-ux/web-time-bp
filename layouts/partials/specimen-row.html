@@ -1,0 +1,11 @@
+{{- /* A Letraset-style row: the word, then ghosts of its letters already rubbed off the sheet, then a semicolon. Pass a dict with title, and optionally url and tag. */ -}}
+{{- $title := .title -}}
+{{- $tag := .tag | default "div" -}}
+{{- $spare := "" -}}
+{{- range split (replace $title " " "") "" }}{{ $spare = printf "%s%s" $spare (strings.Repeat 3 .) }}{{ end -}}
+{{- $spare = strings.Repeat 4 $spare -}}
+{{ printf "<%s class=\"specimen\">" $tag | safeHTML }}
+  {{- with .url }}<a href="{{ . }}">{{ $title }}</a>{{ else }}<span>{{ $title }}</span>{{ end -}}
+  <span class="spares" aria-hidden="true">{{ $spare }}</span>
+  <span class="semi" aria-hidden="true">;</span>
+{{ printf "</%s>" $tag | safeHTML }}

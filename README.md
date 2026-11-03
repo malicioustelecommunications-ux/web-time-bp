@@ -1,6 +1,6 @@
 # Portfolio
 
-A minimal Hugo portfolio styled with [terminal.css](https://terminalcss.xyz/). No theme dependency: the templates live in `layouts/`.
+A minimal Hugo portfolio styled as a sheet of Letraset dry-transfer lettering, set in [DINish](https://github.com/playbeing/dinish). No theme dependency: the templates live in `layouts/`.
 
 ## Run locally
 
@@ -16,12 +16,13 @@ Open http://localhost:1313. `-D` includes drafts.
 
 | Path | What it is |
 | --- | --- |
-| `hugo.toml` | Site title, author, description and the nav menu |
+| `hugo.toml` | Site title, author, tagline, sheet number, "printed in" line and the nav menu |
 | `content/_index.md` | Homepage text |
-| `content/work/`, `content/paper/`, `content/sound/` | One Markdown file per entry; `_index.md` is the section intro |
+| `content/work/`, `content/paper/`, `content/sound/` | One Markdown file per entry; `_index.md` is the section intro and sets the section's `sheet` number |
 | `content/about.md` | About page |
 | `layouts/` | Templates (`baseof`, `list`, `single`, homepage, partials) |
-| `static/css/custom.css` | Overrides on top of terminal.css, including dark mode |
+| `static/css/main.css` | All styling; colours and sizes are variables at the top, dark mode included |
+| `static/fonts/` | DINish web fonts and their licence (SIL Open Font License) |
 | `static/` | Anything else served as-is (images, PDFs, audio) |
 
 ## Add an entry

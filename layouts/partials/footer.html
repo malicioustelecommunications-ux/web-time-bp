@@ -1,4 +1,12 @@
-<footer class="site-footer">
-  <hr>
-  <p>&copy; {{ now.Year }} {{ site.Params.author }}</p>
+<div class="spacer-row" aria-hidden="true">«» – – ^ – ~ – – ^ – ~ «» = ═ = – – ^ – ~ – – ^ – ~ «» = ═ = – – ^ – ~ – – «»</div>
+<footer class="sheet-foot">
+  {{ partial "brand.html" . }}
+  <p class="foot-kind">Static<br>heat resistant</p>
+  <p class="foot-small">
+    All work on this site &copy; {{ now.Year }} {{ site.Params.author }}. Reproduction by permission only.<br>
+    Set in DINish, licensed under the SIL Open Font License.<br>
+    Built with Hugo.
+  </p>
+  <p class="foot-printed">Printed in {{ site.Params.printedIn }}</p>
+  <span class="sheet-no">{{ partial "sheet-number.html" . }}</span>
 </footer>

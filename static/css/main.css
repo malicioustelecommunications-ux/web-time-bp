@@ -1,0 +1,407 @@
+/* Letraset transfer sheet. Colours and sizes are all variables at the top. */
+
+@font-face {
+  font-family: "DINish";
+  src: url("../fonts/dinish-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DINish";
+  src: url("../fonts/dinish-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DINish";
+  src: url("../fonts/dinish-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --desk: #d6d4cd;
+  --paper: #f3f2ed;
+  --ink: #161616;
+  --ink-soft: #55534e;
+  --guide: #8f8c85;
+  --ghost: rgba(22, 22, 22, 0.08);
+  --rule: 2px;
+  --bar: 7px;
+  --specimen: clamp(2.6rem, 11vw, 6.5rem);
+  --title: clamp(2.2rem, 8vw, 5rem);
+  --entry: clamp(1.6rem, 5vw, 2.4rem);
+  --gutter: clamp(16px, 4vw, 48px);
+  --font: "DINish", "DIN Alternate", "Bahnschrift", "Arial Narrow", sans-serif;
+}
+
+/* White lettering on a dark sheet. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --desk: #0d0d0d;
+    --paper: #1c1c1b;
+    --ink: #f1efe8;
+    --ink-soft: #b4b1a9;
+    --guide: #77746d;
+    --ghost: rgba(241, 239, 232, 0.08);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* The sheet itself */
+
+.sheet {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 28px var(--gutter) 24px;
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 700px) {
+  .sheet {
+    margin: 0;
+    box-shadow: none;
+    min-height: 100vh;
+  }
+}
+
+/* Header strip: rule across the top, heavy bar down the left */
+
+.sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 32px;
+  padding: 10px 0 10px 24px;
+  border-top: var(--rule) solid var(--ink);
+  border-left: var(--bar) solid var(--ink);
+  border-bottom: var(--rule) solid var(--ink);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.brand-box {
+  padding: 3px 10px 4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.sheet-nav {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.sheet-nav a {
+  text-decoration: none;
+}
+
+.sheet-nav a.active,
+.sheet-nav a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.slash {
+  margin: 0 1px;
+}
+
+.sheet-no {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .sheet-head {
+    padding-left: 14px;
+  }
+
+  .sheet-nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+main {
+  padding: 24px 0 16px;
+}
+
+/* Specimen rows: big italic letters over a dashed spacing guide */
+
+.specimens {
+  margin-bottom: 32px;
+}
+
+.specimen {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.04em 0 0.14em 0.06em;
+  font-size: var(--specimen);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 0.012em currentColor;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Two dash rhythms laid over each other give the uneven spacing marks */
+.specimen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 1px;
+  background:
+    repeating-linear-gradient(90deg, var(--guide) 0 9px, transparent 9px 23px),
+    repeating-linear-gradient(90deg, transparent 0 14px, var(--guide) 14px 18px, transparent 18px 41px);
+}
+
+.specimen > :first-child {
+  white-space: normal;
+}
+
+.specimen a {
+  text-decoration: none;
+}
+
+article .specimen {
+  font-size: var(--title);
+}
+
+.specimen a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.08em;
+}
+
+/* Letters already rubbed off leave a faint ghost on the backing sheet */
+.spares {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ghost);
+  -webkit-text-stroke: 0;
+}
+
+.semi {
+  flex: none;
+  font-size: 0.55em;
+  padding-left: 0.1em;
+}
+
+/* Body copy */
+
+.prose {
+  max-width: 38em;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+  -webkit-text-stroke: 0.015em currentColor;
+}
+
+.prose code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+.label,
+.meta {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+h2.label {
+  margin: 40px 0 8px;
+}
+
+/* Entry lists */
+
+.entries {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.entries li {
+  position: relative;
+  padding: 10px 0 14px;
+}
+
+.entries li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--guide) 0 6px, transparent 6px 14px);
+}
+
+.entries a {
+  display: inline-block;
+  margin-right: 16px;
+  font-size: var(--entry);
+  font-style: italic;
+  line-height: 1.15;
+  text-decoration: none;
+  -webkit-text-stroke: 0.012em currentColor;
+}
+
+.entries a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.entries p {
+  margin: 4px 0 0;
+  max-width: 38em;
+}
+
+article > .meta {
+  margin: 8px 0 24px;
+}
+
+.back {
+  margin-top: 40px;
+  font-weight: 700;
+}
+
+/* Bottom of the sheet: punctuation strip, then the small print */
+
+.spacer-row {
+  font-size: 1.6rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+
+.sheet-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 12px 0 6px;
+  border-top: 1px solid var(--ink);
+  border-right: var(--bar) solid var(--ink);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.sheet-foot .brand-name {
+  font-size: 1.15rem;
+}
+
+.sheet-foot .brand-box {
+  font-size: 0.75rem;
+}
+
+.sheet-foot p {
+  margin: 0;
+}
+
+.foot-kind {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.foot-small {
+  flex: 1;
+  min-width: 16em;
+  font-size: 0.65rem;
+}
+
+.foot-printed {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-left: 48px;
+  background: linear-gradient(var(--ink), var(--ink)) left 0.7em / 40px 1px no-repeat;
+}
+
+.sheet-foot .sheet-no {
+  margin-left: auto;
+  padding-right: 12px;
+}

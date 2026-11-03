@@ -1,12 +1,16 @@
 baseURL = "https://example.org/"
 languageCode = "en-gb"
-title = "Portfolio"
+title = "Your Name"
 disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "Work, writing and sound."
   author = "Your Name"
-  terminalCSS = "https://unpkg.com/terminal.css@0.7.5/dist/terminal.min.css"
+  # The reversed box next to the title in the header and footer.
+  tagline = "portfolio"
+  # Sheet number shown top and bottom right. Sections and pages can set their own with `sheet` in front matter.
+  sheet = "2926"
+  printedIn = "London"
 
 [menus]
   [[menus.main]]
