@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "tfl": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": ["@daanrongen/tfl-mcp@1.4.3"],
+      "env": {
+        "TFL_API_KEY": "${TFL_API_KEY:-}"
+      }
+    }
+  }
+}
